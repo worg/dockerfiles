@@ -9,6 +9,10 @@ RUN set -xe \
                           libxslt         \
                           libxslt-dev     \
                           openssl-dev     \
+                          python3-dev     \
+                          musl-dev        \
+                          rust            \
+                          cargo           \
     && pip3 install appdirs   \
                     cssselect \
                     keyring   \
@@ -17,12 +21,17 @@ RUN set -xe \
                     pyyaml    \
                     requests  \
                     chump     \
+                    jq        \
                     urlwatch  \
     && apk del build-base  \
                libffi-dev  \
                libxml2-dev \
                libxslt-dev \
                openssl-dev \
+               python3-dev     \
+               musl-dev        \
+               rust            \
+               cargo           \
     && echo '*/30 * * * * cd /root/.urlwatch && urlwatch --urls urls.yaml --config urlwatch.yaml --hooks hooks.py --cache cache.db' | crontab -
 
 VOLUME /root/.urlwatch
